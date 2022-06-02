@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     EditText edtmiasto;
     TextView temperatura;
 
-    private final String url = "http://api.weatherapi.com/v1/forecast.json?key=7c42071cd2ae4e228e3114233220206&q=";
-    private final String appid = "7c42071cd2ae4e228e3114233220206";
+    private final String url = "http://api.openweathermap.org/data/2.5/weather";
+    private final String appid = "c0a45fe8d3bc6fe117176286714d793c";
     DecimalFormat df = new DecimalFormat("#.##");
 
 
@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
         if (miasto.equals(""))
             temperatura.setText("Wprowadz miasto");
         else{
-            tempUrl = url + miasto + "&days=1&aqi=no&alerts=no" ;
-
+            tempUrl = url + "?q=" + miasto + "&appid=" + appid;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
