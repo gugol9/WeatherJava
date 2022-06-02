@@ -20,14 +20,14 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private RelativeLayout Homerl;
 
     EditText edtmiasto;
     TextView temperatura;
 
     private final String url = "http://api.weatherapi.com/v1/forecast.json?key=7c42071cd2ae4e228e3114233220206&q=";
     private final String appid = "7c42071cd2ae4e228e3114233220206";
-    //DecimalFormat df = new DecimalFormat("#.##");
+    DecimalFormat df = new DecimalFormat("#.##");
+
 
     //@SuppressLint("WrongViewCast")
     @Override
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             temperatura.setText("Wprowadz miasto");
         else{
             tempUrl = url + miasto + "&days=1&aqi=no&alerts=no" ;
-        }
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -62,5 +62,6 @@ public class MainActivity extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
+        }
     }
 }
