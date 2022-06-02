@@ -30,7 +30,7 @@ public class WeatherRVAdapter extends RecyclerView.Adapter<WeatherRVAdapter.View
     @Override
     public void onBindViewHolder(@NonNull WeatherRVAdapter.ViewHolder holder, int position) {
 
-    }//34 minuta 
+    }//34 minuta   
 
     @Override
     public int getItemCount() {
