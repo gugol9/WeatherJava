@@ -14,6 +14,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
@@ -22,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText edtmiasto;
-    TextView temperatura;
+    TextView temperatura; //wiatr;
 
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
     private final String appid = "c0a45fe8d3bc6fe117176286714d793c";
+
+
     DecimalFormat df = new DecimalFormat("#.##");
 
 
@@ -51,7 +56,32 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("response", response);
+
+              //  Log.d("response", response);
+                String output = "";
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    JSONArray jsonArray = jsonResponse.getJSONArray("weather");
+                    JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
+                    String description = jsonObjectWeather.getString("description");
+                    JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
+                    double temp = jsonObjectMain.getDouble("temp");
+                    double feelslike = jsonObjectMain.getDouble("feels_like");
+                    int pressure = jsonObjectMain.getInt("pressure");
+                    int humidity = jsonObjectMain.getInt("humidity");
+                   // JSONObject jsonWind = jsonResponse.getJSONObject("wind");
+                   // String wind = jsonWind.getString("wind");
+
+                    //windd += wind;
+                    output += pressure;
+                    edtmiasto.setText(output);
+                   // wiatr.setText(windd);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override
