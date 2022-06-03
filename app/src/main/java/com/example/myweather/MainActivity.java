@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import  androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,12 +27,12 @@ public class MainActivity extends AppCompatActivity {
     EditText edtmiasto;
 
     TextView windID;
-   TextView pressureID;
-   TextView miastoID;
-   TextView temperaturaID;
-   TextView humidityID;
-   TextView krajID;
-   TextView skyID;
+    TextView pressureID;
+    TextView miastoID;
+    TextView temperaturaID;
+    TextView humidityID;
+    TextView krajID;
+    TextView skyID;
 
 
 
@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         edtmiasto = findViewById(R.id.edtmiasto);
 
         windID = findViewById(R.id.windID);
-     pressureID = findViewById(R.id.pressureID);
-     miastoID = findViewById(R.id.miastoID);
-     temperaturaID = findViewById(R.id.temperaturaID);
-        humidityID =findViewById(R.id.humidityID);
+        pressureID = findViewById(R.id.pressureID);
+        miastoID = findViewById(R.id.miastoID);
+        temperaturaID = findViewById(R.id.temperaturaID);
+        humidityID = findViewById(R.id.humidityID);
         krajID = findViewById(R.id.krajID);
         skyID = findViewById(R.id.skyID);
 
@@ -68,64 +68,62 @@ public class MainActivity extends AppCompatActivity {
         String miasto = edtmiasto.getText().toString().trim();
         if (miasto.equals(""))
             edtmiasto.setText("Wprowadz miasto");
-        else{
+        else {
             tempUrl = url + "?q=" + miasto + "&appid=" + appid;
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener < String > () {
+                @Override
+                public void onResponse(String response) {
 
-              //  Log.d("response", response);
-                String pressure_ = "";
-                String temp_ = "";
-                String humidity_ = "";
+                    //  Log.d("response", response);
+                    String pressure_ = "";
+                    String temp_ = "";
+                    String humidity_ = "";
 
-                try {
-                    JSONObject jsonResponse = new JSONObject(response);
-                    JSONArray jsonArray = jsonResponse.getJSONArray("weather");
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        JSONArray jsonArray = jsonResponse.getJSONArray("weather");
 
-                    JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
-                    String description = jsonObjectWeather.getString("description");
+                        JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
+                        String description = jsonObjectWeather.getString("description");
 
-                    JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
-                    double temp = jsonObjectMain.getDouble("temp") - 273.15;
-                    float pressure = jsonObjectMain.getInt("pressure");
-                    int humidity = jsonObjectMain.getInt("humidity");
+                        JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
+                        double temp = jsonObjectMain.getDouble("temp") - 273.15;
+                        float pressure = jsonObjectMain.getInt("pressure");
+                        int humidity = jsonObjectMain.getInt("humidity");
 
-                    JSONObject jsonWind = jsonResponse.getJSONObject("wind");
-                    String wind = jsonWind.getString("speed");
+                        JSONObject jsonWind = jsonResponse.getJSONObject("wind");
+                        String wind = jsonWind.getString("speed");
 
-                    String city = jsonResponse.getString("name");
+                        String city = jsonResponse.getString("name");
 
-                    JSONObject jsonObjectSys = jsonResponse.getJSONObject("sys");
-                    String country = jsonObjectSys.getString("country");
+                        JSONObject jsonObjectSys = jsonResponse.getJSONObject("sys");
+                        String country = jsonObjectSys.getString("country");
 
-                    humidity_ += humidity;
-                    pressure_ += pressure;
-                    temp_ += (int)temp;
+                        humidity_ += humidity;
+                        pressure_ += pressure;
+                        temp_ += (int) temp;
 
-                    skyID.setText(description);
-                    krajID.setText(country);
-                    humidityID.setText(humidity_ +" %");
-                    temperaturaID.setText(temp_);
-                    miastoID.setText(city);
-                    pressureID.setText(pressure_+" hPa");
-                    windID.setText(wind+" m/s");
+                        skyID.setText(description);
+                        krajID.setText(country);
+                        humidityID.setText(humidity_ + " %");
+                        temperaturaID.setText(temp_ +" °C");
+                        miastoID.setText(city);
+                        pressureID.setText(pressure_ + " hPa");
+                        windID.setText(wind + " m/s");
 
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString().trim() ,Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(stringRequest);
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            requestQueue.add(stringRequest);
         }
     }
 }
