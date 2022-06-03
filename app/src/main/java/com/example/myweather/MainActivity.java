@@ -25,7 +25,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText edtmiasto;
-    TextView temperatura; //wiatr;
+
+    TextView windID;
+   TextView pressureID;
+   TextView miastoID;
+   TextView temperaturaID;
+   TextView humidityID;
+
+
+
 
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
     private final String appid = "c0a45fe8d3bc6fe117176286714d793c";
@@ -40,7 +48,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         edtmiasto = findViewById(R.id.edtmiasto);
-        temperatura = findViewById(R.id.temperatura);
+
+        windID = findViewById(R.id.windID);
+     pressureID = findViewById(R.id.pressureID);
+     miastoID = findViewById(R.id.miastoID);
+     temperaturaID = findViewById(R.id.temperaturaID);
+        humidityID =findViewById(R.id.humidityID);
 
 
 
@@ -50,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         String tempUrl = "";
         String miasto = edtmiasto.getText().toString().trim();
         if (miasto.equals(""))
-            temperatura.setText("Wprowadz miasto");
+            edtmiasto.setText("Wprowadz miasto");
         else{
             tempUrl = url + "?q=" + miasto + "&appid=" + appid;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
@@ -58,24 +71,38 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
               //  Log.d("response", response);
-                String output = "";
+                String pressure_ = "";
+                String temp_ = "";
+                String humidity_ = "";
+
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     JSONArray jsonArray = jsonResponse.getJSONArray("weather");
                     JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
+
                     String description = jsonObjectWeather.getString("description");
                     JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
-                    double temp = jsonObjectMain.getDouble("temp");
-                    double feelslike = jsonObjectMain.getDouble("feels_like");
-                    int pressure = jsonObjectMain.getInt("pressure");
-                    int humidity = jsonObjectMain.getInt("humidity");
-                   // JSONObject jsonWind = jsonResponse.getJSONObject("wind");
-                   // String wind = jsonWind.getString("wind");
 
-                    //windd += wind;
-                    output += pressure;
-                    edtmiasto.setText(output);
-                   // wiatr.setText(windd);
+                    double temp = jsonObjectMain.getDouble("temp") - 273.15;
+                    float pressure = jsonObjectMain.getInt("pressure");
+                    int humidity = jsonObjectMain.getInt("humidity");
+
+                    JSONObject jsonWind = jsonResponse.getJSONObject("wind");
+                    String wind = jsonWind.getString("speed");
+
+                    String city = jsonResponse.getString("name");
+
+                    humidity_ += humidity;
+                    pressure_ += pressure;
+                    temp_ += (int)temp;
+
+
+                    humidityID.setText(humidity_ +" %");
+                    temperaturaID.setText(temp_);
+                    miastoID.setText(city);
+                    pressureID.setText(pressure_+" hPa");
+                    windID.setText(wind+" m/s");
+
 
 
                 } catch (JSONException e) {
