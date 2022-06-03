@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
    TextView temperaturaID;
    TextView humidityID;
    TextView krajID;
+   TextView skyID;
 
 
 
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
      temperaturaID = findViewById(R.id.temperaturaID);
         humidityID =findViewById(R.id.humidityID);
         krajID = findViewById(R.id.krajID);
+        skyID = findViewById(R.id.skyID);
 
 
 
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     pressure_ += pressure;
                     temp_ += (int)temp;
 
+                    skyID.setText(description);
                     krajID.setText(country);
                     humidityID.setText(humidity_ +" %");
                     temperaturaID.setText(temp_);
