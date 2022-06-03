@@ -23,9 +23,7 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-
     EditText edtmiasto;
-
     TextView windID;
     TextView pressureID;
     TextView miastoID;
@@ -34,23 +32,16 @@ public class MainActivity extends AppCompatActivity {
     TextView krajID;
     TextView skyID;
 
-
-
-
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
     private final String appid = "c0a45fe8d3bc6fe117176286714d793c";
-
-
     DecimalFormat df = new DecimalFormat("#.##");
 
-
-    //@SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        edtmiasto = findViewById(R.id.edtmiasto);
 
+        edtmiasto = findViewById(R.id.edtmiasto);
         windID = findViewById(R.id.windID);
         pressureID = findViewById(R.id.pressureID);
         miastoID = findViewById(R.id.miastoID);
@@ -58,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
         humidityID = findViewById(R.id.humidityID);
         krajID = findViewById(R.id.krajID);
         skyID = findViewById(R.id.skyID);
-
-
-
     }
 
     public void getWeather(View view) {
@@ -73,12 +61,9 @@ public class MainActivity extends AppCompatActivity {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener < String > () {
                 @Override
                 public void onResponse(String response) {
-
-                    //  Log.d("response", response);
                     String pressure_ = "";
                     String temp_ = "";
                     String humidity_ = "";
-
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         JSONArray jsonArray = jsonResponse.getJSONArray("weather");
@@ -114,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                 }
             }, new Response.ErrorListener() {
                 @Override
