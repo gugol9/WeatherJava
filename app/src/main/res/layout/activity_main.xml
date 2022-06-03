@@ -31,7 +31,8 @@
             tools:ignore="MissingConstraints" android:visibility="visible" tools:visibility="visible"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/edtmiasto" android:layout_marginTop="40dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/edtmiasto" android:layout_marginTop="40dp"
+            android:textSize="20sp" android:textStyle="bold"/>
     <TextView
             android:text="Kraj"
             android:layout_width="100dp"
@@ -43,10 +44,10 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_marginStart="36dp"
             app:layout_constraintStart_toEndOf="@+id/miasto" app:layout_constraintTop_toBottomOf="@+id/edtmiasto"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp" android:textSize="20sp" android:textStyle="bold"/>
     <TextView
             android:text="Temperatura"
-            android:layout_width="115dp"
+            android:layout_width="128dp"
             android:padding="5dp"
             android:layout_height="50dp" android:id="@+id/temperatura2"
             android:textColor="@color/white"
@@ -55,7 +56,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
             app:layout_constraintStart_toEndOf="@+id/kraj" app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintTop_toBottomOf="@+id/edtmiasto" android:layout_marginTop="40dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/edtmiasto" android:layout_marginTop="40dp"
+            android:textSize="20sp" android:textStyle="bold"/>
     <TextView
             android:text="Cisnienie"
             android:layout_width="100dp"
@@ -67,7 +69,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toEndOf="@+id/wiatr"
             android:layout_marginStart="36dp"
-            app:layout_constraintTop_toBottomOf="@+id/krajID" android:layout_marginTop="48dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/krajID" android:layout_marginTop="48dp" android:textSize="20sp"
+            android:textStyle="bold"/>
     <TextView
             android:text="Wiatr"
             android:layout_width="100dp"
@@ -78,7 +81,7 @@
             android:gravity="center"
             tools:ignore="MissingConstraints" android:visibility="visible" tools:visibility="visible"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" android:layout_marginTop="104dp"
-            app:layout_constraintTop_toBottomOf="@+id/miasto"/>
+            app:layout_constraintTop_toBottomOf="@+id/miasto" android:textSize="20sp" android:textStyle="bold"/>
     <Button
             android:text="Zatwierdz"
             android:layout_width="wrap_content"
@@ -93,48 +96,51 @@
             android:layout_height="50dp" android:id="@+id/windID"
             app:layout_constraintTop_toBottomOf="@+id/wiatr" app:layout_constraintStart_toStartOf="@+id/wiatr"
             app:layout_constraintEnd_toEndOf="@+id/wiatr" android:textColor="#03A9F4"
-            android:gravity="center" android:layout_marginTop="4dp" app:layout_constraintHorizontal_bias="0.0"/>
+            android:gravity="center" android:layout_marginTop="4dp" app:layout_constraintHorizontal_bias="0.0"
+            android:textSize="18sp" android:textStyle="bold"/>
     <TextView
             android:layout_width="100dp"
             android:layout_height="50dp" android:id="@+id/pressureID"
             app:layout_constraintTop_toBottomOf="@+id/cisnienie" app:layout_constraintEnd_toEndOf="@+id/cisnienie"
             app:layout_constraintStart_toStartOf="@+id/cisnienie" android:textColor="#03A9F4"
-            android:gravity="center" android:layout_marginTop="4dp" app:layout_constraintHorizontal_bias="0.0"/>
+            android:gravity="center" android:layout_marginTop="4dp" app:layout_constraintHorizontal_bias="0.0"
+            android:textSize="18sp" android:textStyle="bold"/>
     <TextView
             android:layout_width="100dp"
             android:layout_height="50dp" android:id="@+id/miastoID"
             app:layout_constraintTop_toBottomOf="@+id/miasto"
             android:layout_marginTop="4dp" app:layout_constraintEnd_toEndOf="@+id/miasto"
             app:layout_constraintStart_toStartOf="@+id/miasto" app:layout_constraintHorizontal_bias="0.0"
-            android:gravity="center"/>
+            android:gravity="center" android:textSize="18sp"
+            android:textColor="@color/white" android:textStyle="bold"/>
     <TextView
             android:layout_width="100dp"
             android:layout_height="50dp" android:id="@+id/krajID"
             app:layout_constraintTop_toBottomOf="@+id/kraj"
             android:layout_marginTop="4dp" app:layout_constraintStart_toEndOf="@+id/miastoID"
             android:layout_marginStart="36dp" android:gravity="center"
-    />
+            android:textSize="18sp" android:textStyle="bold" android:textColor="#FFFFFF"/>
     <TextView
             android:layout_width="100dp"
             android:layout_height="50dp" android:id="@+id/temperaturaID"
             app:layout_constraintTop_toBottomOf="@+id/temperatura2" app:layout_constraintStart_toEndOf="@+id/krajID"
             android:layout_marginTop="4dp" android:layout_marginStart="40dp"
-            android:gravity="center"/>
+            android:gravity="center" android:textSize="18sp" android:textColor="#FFFFFF" android:textStyle="bold"/>
     <TextView
             android:text="Wilgotnosc"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="50dp" android:id="@+id/wilgotnosc"
             app:layout_constraintTop_toBottomOf="@+id/temperaturaID"
             android:layout_marginTop="48dp" app:layout_constraintStart_toEndOf="@+id/cisnienie"
             android:layout_marginStart="40dp"
-            android:gravity="center"/>
+            android:gravity="center" android:textSize="20sp" android:textStyle="bold" android:textColor="#FFFFFF"/>
     <TextView
             android:layout_width="100dp"
             android:layout_height="50dp" android:id="@+id/humidityID"
             app:layout_constraintTop_toBottomOf="@+id/wilgotnosc"
             android:layout_marginTop="4dp" app:layout_constraintStart_toEndOf="@+id/pressureID"
             android:layout_marginStart="40dp"
-            android:gravity="center"/>
+            android:gravity="center" android:textSize="18sp" android:textColor="#2196F3" android:textStyle="bold"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
