@@ -23,14 +23,14 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText edtmiasto;
-    TextView windID;
-    TextView pressureID;
-    TextView miastoID;
-    TextView temperaturaID;
-    TextView humidityID;
-    TextView krajID;
-    TextView skyID;
+    private EditText edtmiasto;
+    private TextView windID;
+    private TextView pressureID;
+    private TextView miastoID;
+    private TextView temperaturaID;
+    private TextView humidityID;
+    private TextView krajID;
+    private TextView skyID;
 
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
     private final String appid = "c0a45fe8d3bc6fe117176286714d793c";
